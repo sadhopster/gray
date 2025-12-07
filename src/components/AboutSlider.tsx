@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./AboutSlider.css";
 import p1 from "../assets/1.jpg";
 import p2 from "../assets/2.jpg";

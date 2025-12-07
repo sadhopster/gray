@@ -1,11 +1,7 @@
 import type { Nominee } from '../types';
-import VoteModal from './VoteModal';
 
 export default function NomineeProfile({ 
   nominee, 
-  nominationId, 
-  nominationType,
-  deadline,
   onClose, 
   onVote 
 }: { 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { Nomination, Nominee } from '../types';
 import VoteConfirmModal from './VoteConfirmModal';
 import './NomineesModal.css';
@@ -132,7 +132,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function NomineesModal({ nomination, deadline, onClose }: Props) {
+export default function NomineesModal({ nomination, onClose }: Props) {
   const [selectedNominee, setSelectedNominee] = useState<Nominee | null>(null);
   const [showVoteConfirm, setShowVoteConfirm] = useState(false);
 

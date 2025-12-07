@@ -1,5 +1,4 @@
 import type { Nominee, Nomination } from '../types';
-import { useState } from 'react';
 
 // ИМПОРТЫ КАРТИНОК
 import bersh from '../assets/bersh 2.png';

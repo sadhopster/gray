@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { Nominee } from '../types';
-import { db, firebaseAvailable, ref, push, set } from '../firebase';
+import { db, firebaseAvailable, ref, push } from '../firebase';
 
 function writeLocalVote(record: any) {
   const data = JSON.parse(localStorage.getItem('votes') || '[]');

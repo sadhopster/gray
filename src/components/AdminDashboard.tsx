@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import type { Nominee } from '../types';
+import { useEffect, useState } from 'react';
+
 import { NOMINEES } from '../data/nominees';
-import { db, firebaseAvailable, ref, onValue } from '../firebase';
+import { db, ref, onValue } from '../firebase';
 
 type CountMap = Record<string, { public: number; private: number }>;
 

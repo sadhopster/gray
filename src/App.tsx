@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Countdown from './components/Countdown';
 import Partners from './components/Partners';
-import Explainer from './components/Explainer';
 import NominationList from './components/NominationList';
 import AdminDashboard from './components/AdminDashboard';
 import Footer from './components/Footer';

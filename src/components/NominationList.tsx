@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./NominationList.css";
-import type { Nomination, Nominee } from '../types';
+import type { Nomination } from '../types';
 import NomineesModal from "./NomineesModal";
 
 type Props = {
