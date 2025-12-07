@@ -1,0 +1,380 @@
+/* Основной контейнер - с высокой специфичностью */
+section.nominations {
+    width: 100% !important;
+    margin-top: 4rem !important;
+    padding: 0 2rem !important;
+}
+
+/* Переключатель Публичные/Приватные */
+.nominations-tabs {
+    font-family: "Viaoda Libre", serif;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    margin-bottom: 3rem !important;
+    font-family: "Viaoda Libre", serif;
+}
+
+.tab-button {
+    padding: 0.75rem 2.5rem !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+    border: 3px solid #ff6a1a !important;
+    color: white !important;
+    border-radius: 30px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    min-width: 160px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    font-family: "Viaoda Libre", serif;
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, #ff6a1a, #ff8c42) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(255, 106, 26, 0.5) !important;
+}
+
+.tab-button:hover:not(.active) {
+    background: rgba(255, 106, 26, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Сетка карточек - ВСЕГДА 4 в строке на десктопе */
+.nominations-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2.5rem !important;
+    justify-items: center !important;
+    align-items: start !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+
+/* Карточка номинации - ПОЛНОСТЬЮ ПРОЗРАЧНАЯ */
+.nomination-card {
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease-out !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    position: relative !important;
+}
+
+.nomination-card:hover {
+    transform: translateY(-10px) !important;
+}
+
+/* Изображение - БЕЗ ФОНОВОЙ ПОДЛОЖКИ */
+.nomination-image {
+    width: 100% !important;
+    height: 380px !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+    display: block !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Свечение только по контуру картинки */
+.nomination-card:hover .nomination-image {
+    box-shadow: 0 0 25px 8px rgba(255, 106, 26, 0.9) !important;
+    transform: scale(1.02) !important;
+}
+
+/* Название номинации */
+.nomination-title {
+    font-family: "Viaoda Libre", serif;
+    margin-top: 1.5rem !important;
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Оранжевая линия под названием */
+.nomination-underline {
+    width: 60% !important;
+    height: 4px !important;
+    margin: 0.6rem auto 0 !important;
+    background: linear-gradient(90deg, transparent, #ff6a1a, transparent) !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.7 !important;
+}
+
+.nomination-card:hover .nomination-underline {
+    width: 90% !important;
+    opacity: 1 !important;
+    background: linear-gradient(90deg, #ff6a1a, #ff8c42, #ff6a1a) !important;
+}
+
+/* ===== АДАПТИВ ===== */
+
+/* Большие экраны */
+@media (max-width: 1400px) {
+    .nominations-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 2rem !important;
+        max-width: 1200px !important;
+    }
+    
+    .nomination-card {
+        max-width: 260px !important;
+    }
+    
+    .nomination-image {
+        height: 340px !important;
+    }
+}
+
+/* Планшеты (2 карточки в строке) */
+@media (max-width: 1200px) {
+    .nominations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 3rem !important;
+        max-width: 800px !important;
+    }
+    
+    .nomination-card {
+        max-width: 300px !important;
+    }
+    
+    .nomination-image {
+        height: 400px !important;
+    }
+}
+
+/* Мобильные устройства (1 карточка в строке) */
+@media (max-width: 768px) {
+    section.nominations {
+        padding: 0 1rem !important;
+    }
+    
+    .nominations-tabs {
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .tab-button {
+        padding: 0.6rem 1.5rem !important;
+        min-width: 130px !important;
+        font-size: 1rem !important;
+        border-width: 2px !important;
+    }
+    
+    .nominations-grid {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+    }
+    
+    .nomination-card {
+        max-width: 85% !important;
+        margin: 0 auto !important;
+    }
+    
+    .nomination-image {
+        height: 380px !important;
+    }
+}
+
+/* Маленькие мобильные */
+@media (max-width: 480px) {
+    .nomination-card {
+        max-width: 95% !important;
+    }
+    
+    .nomination-image {
+        height: 340px !important;
+    }
+    
+    .nomination-title {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* ЭКСТРА: УБИРАЕМ ВСЕ СТАРЫЕ СТИЛИ КАРТОЧЕК */
+.nomination-card-img-wrapper,
+.card-img-wrapper,
+.nomination-card-img,
+.single-nomination {
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Сообщение о приватных номинациях */
+.private-nominations-info {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 106, 26, 0.1);
+    border-radius: 12px;
+    border-left: 4px solid #ff6a1a;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.private-nominations-info h3 {
+    font-family: "Viaoda Libre", serif;
+    color: #ff6a1a;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.private-nominations-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-family: "Viaoda Libre", serif;
+}
+
+/* Форма для ввода пароля */
+.password-form-container {
+    font-family: "Viaoda Libre", serif;
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 2px solid rgba(255, 106, 26, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.password-input-group {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.password-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 106, 26, 0.5);
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.password-input:focus {
+    border-color: #ff6a1a;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 106, 26, 0.3);
+}
+
+.password-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.password-submit {
+    font-family: "Viaoda Libre", serif;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6a1a, #ff8c42);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.password-submit:hover {
+    background: linear-gradient(135deg, #ff8c42, #ff6a1a);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 106, 26, 0.4);
+}
+
+.password-error {
+    color: #ff4757;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 71, 87, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #ff4757;
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Сообщение об отсутствии номинаций */
+.no-nominations-message {
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    background: rgba(255, 106, 26, 0.05);
+    border-radius: 12px;
+    border: 2px dashed rgba(255, 106, 26, 0.3);
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+/* Анимация для ошибки */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Адаптив для формы пароля */
+@media (max-width: 768px) {
+    .private-nominations-info {
+        padding: 1.25rem;
+        margin: 0 1rem 2rem;
+    }
+
+    .private-nominations-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .private-nominations-info p {
+        font-size: 1rem;
+    }
+
+    .password-form-container {
+        margin: 2rem 1rem;
+        padding: 2rem;
+    }
+
+    .password-input-group {
+        flex-direction: column;
+    }
+
+    .password-submit {
+        width: 100%;
+    }
+
+    .no-nominations-message {
+        margin: 2rem 1rem;
+        padding: 2rem;
+    }
+}
+
+.nominations-tabs {
+    font-family: "Viaoda Libre", serif;
+}

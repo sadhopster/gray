@@ -1,0 +1,48 @@
+.partners {
+  margin: 40px 0;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgb(20, 20, 25);
+}
+
+.partners-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.75rem;
+  margin-top: 1.875rem;
+}
+
+.partner-logo {
+  width: auto;
+  height: 1.875rem;
+  opacity: 0.7;
+  filter: grayscale(0.3);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.partner-logo:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+@media (max-width: 768px) {
+  .partners {
+    margin: 30px 0;
+    gap: 1rem;
+  }
+
+  .partners-row {
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .partner-logo {
+    height: 1.5rem;
+  }
+}
+

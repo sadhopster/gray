@@ -1,0 +1,47 @@
+.nomination-card {
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: transparent;
+}
+
+.nomination-card:hover {
+    transform: translateY(-8px);
+}
+
+.nomination-image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: box-shadow 0.3s ease;
+}
+
+.nomination-card:hover .nomination-image {
+    box-shadow: 0 0 20px 6px rgba(255, 106, 26, 0.8);
+}
+
+.nomination-title {
+    margin-top: 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+.nomination-underline {
+    width: 60%;
+    height: 3px;
+    background: #ff6a1a;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+    transition: width 0.3s ease;
+}
+
+.nomination-card:hover .nomination-underline {
+    width: 85%;
+}

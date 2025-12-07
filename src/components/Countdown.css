@@ -1,0 +1,163 @@
+.countdown {
+    text-align: center;
+    font-family: "Viaoda Libre", serif;
+    margin: 2.5rem 0;
+    color: #fff;
+    position: relative;
+    
+  }
+  
+  /* Общее свечение для всего контейнера */
+  .countdown::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 500px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 106, 26, 0.15) 0%,
+      rgba(255, 106, 26, 0.08) 30%,
+      rgba(255, 106, 26, 0.03) 50%,
+      transparent 70%
+    );
+    border-radius: 20px;
+    z-index: 1;
+    filter: blur(20px);
+    pointer-events: none;
+  }
+  
+  .countdown-label {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #ff6a1a;
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    font-size: 54px;
+  }
+  
+  .timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    font-size: 54px;
+  }
+  
+  .time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+  }
+  
+  .time-value {
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #ff6a1a;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    background: transparent;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    min-width: 90px;
+    font-family: "Viaoda Libre", sans;
+    font-weight: 600;
+    font-size: 54px;
+    /* Убираем индивидуальные тени, оставляем только для читаемости */
+    text-shadow: 0 0 2px rgba(255, 106, 26, 0.3);
+  }
+  
+  /* Убираем индивидуальное свечение для чисел */
+  .time-value::before {
+    display: none;
+  }
+  
+  .time-label {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-family: "Viaoda Libre", serif;
+    color: #ff6a1a
+  }
+  
+  .separator {
+    font-size: 2.2rem;
+    color: #ff6a1a;
+    font-weight: 400;
+    margin-top: -0.8rem;
+    font-family: "Viaoda Libre", serif;
+    
+    /* Минимальная тень для разделителей */
+    text-shadow: 0 0 2px rgba(255, 106, 26, 0.3);
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .countdown::before {
+      width: 90%;
+      height: 100px;
+      filter: blur(15px);
+    }
+    
+    .timer-container {
+      gap: 0.8rem;
+    }
+    
+    .time-value {
+      font-size: 2.5rem;
+      min-width: 70px;
+      padding: 0.3rem 0.6rem;
+    }
+    
+    .separator {
+      font-size: 1.8rem;
+      margin-top: -0.6rem;
+    }
+    
+    .time-label {
+      font-size: 0.7rem;
+    }
+    
+    .countdown-label {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .countdown::before {
+      width: 95%;
+      height: 80px;
+      filter: blur(12px);
+    }
+    
+    .timer-container {
+      gap: 0.6rem;
+    }
+    
+    .time-value {
+      font-size: 2rem;
+      min-width: 60px;
+    }
+    
+    .separator {
+      font-size: 1.5rem;
+    }
+    
+    .time-label {
+      font-size: 0.6rem;
+    }
+  }

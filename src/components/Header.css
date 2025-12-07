@@ -1,0 +1,154 @@
+.slay-header {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* шапка — целый экран */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: rgb(20, 20, 25);
+  }
+  
+  /* ФОН (flags.webm) */
+  .header-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: none;
+  }
+  
+  /* Центрированный контент */
+  .header-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+  padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  
+  /* ЛОГО */
+  .slay-logo{
+    width: 25.5rem;
+    height: 17.75rem;
+    filter: drop-shadow(0 0 25px rgba(255,255,255,0.7));
+    margin-bottom: 20px;
+  }
+  .slay-logo-footer{
+    width: 30.5rem;
+    height: 20.75rem;
+    margin-bottom: 10px;
+  }
+  /* КУБОК */
+  .slay-cup {
+    height: 39.625rem;
+    margin-top: -7rem;
+    height: 30.625rem;
+    width: 22.375rem;
+    margin-top: -5rem;
+    filter: drop-shadow(0 0 20px rgba(255,255,100,0.9));
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Анимация кубка */
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* Надпись "ГЛАВНАЯ ПРЕМИЯ РУ-СТРИМИНГА" */
+  .header-title {
+    margin-top: -4rem;
+    text-align: center;
+    z-index: 6;
+  }
+  .caption-footer {
+    margin-top: 0rem;
+  }
+
+  .header-title-line, .caption-footer {
+    font-family: "Viaoda Libre", serif;
+    font-size: 4.6875rem;
+    font-weight: 300;
+    line-height: 95%;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #fff0e5;
+    text-align: center;
+    letter-spacing: -0.02em;
+    transform: scaleY(1.15);
+    font-stretch: condensed;
+  }
+
+  .caption-footer {
+    font-size: 3.8rem;
+  }
+  /* Плавный переход от видео к основному контенту */
+  .header-transition {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgb(20, 20, 25) 30%,
+      rgb(20, 20, 25) 60%,
+      rgb(20, 20, 25) 85%,
+      rgb(20, 20, 25) 100%
+    );
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .header-title-line {
+      font-size: 2.5rem;
+    }
+
+    .header-transition {
+      height: 150px;
+    }
+
+  .header-content {
+    padding-top: 3rem;
+  }
+  }
+  
+  .winline-logo {
+    position: absolute;
+  top: 3.5%;
+    left: 50%;
+    transform: translateX(-50%);
+  width: 15rem;
+    height: auto;
+    z-index: 6;
+    filter: drop-shadow(0 0 12px rgba(0,0,0,0.45));
+    transition: transform 0.3s ease, filter 0.3s ease;
+    display: block;
+  }
+
+  .winline-logo:hover {
+    filter: drop-shadow(0 0 16px rgba(255,120,0,0.5));
+    transform: translateX(-50%) scale(1.02);
+  }
+
+  .winline-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+

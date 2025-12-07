@@ -1,0 +1,1512 @@
+/* Модальное окно с номинантами */
+.nominees-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+    font-family: "Viaoda Libre", serif;
+    backdrop-filter: blur(8px);
+  }
+  
+  .nominees-modal-content {
+    width: 85%;
+    max-width: 1400px;
+    height: 85vh;
+    background: rgba(20, 20, 25, 0.85);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 106, 26, 0.15);
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    animation: modalFadeIn 0.4s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Новый заголовок - градиентный */
+  .nomination-header-gradient {
+    background: linear-gradient(135deg, 
+      rgba(255, 106, 26, 0.08), 
+      rgba(255, 106, 26, 0.03),
+      rgba(255, 106, 26, 0.08)
+    );
+    padding: 2.5rem 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 106, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nomination-header-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 106, 26, 0.6), 
+      transparent
+    );
+  }
+  
+  .nomination-title-elegant {
+    font-family: "Viaoda Libre", serif;
+    color: #fff;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+    text-shadow: 
+      0 2px 10px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(255, 106, 26, 0.4);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .nomination-title-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      #ff6a1a, 
+      transparent
+    );
+  }
+  
+  .nomination-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  /* Кнопка закрытия */
+  .modal-close-elegant {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 106, 26, 0.1);
+    border: 1px solid rgba(255, 106, 26, 0.3);
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: "Viaoda Libre", serif;
+  }
+  
+  .modal-close-elegant:hover {
+    background: rgba(255, 106, 26, 0.25);
+    transform: rotate(90deg);
+    border-color: #ff6a1a;
+  }
+  
+  .nominees-modal-body {
+    padding: 2rem;
+    height: calc(85vh - 150px);
+    overflow-y: auto;
+  }
+  
+  /* Сетка номинантов - полностью прозрачная */
+  .nominees-grid-transparent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  /* Прозрачная карточка номинанта */
+  .nominee-transparent-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Подсветка за спиной */
+  .nominee-photo-backglow {
+    position: relative;
+    width: 220px;
+    height: 300px;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-glow-effect {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 106, 26, 0.25) 0%,
+      rgba(255, 106, 26, 0.1) 40%,
+      transparent 70%
+    );
+    filter: blur(15px);
+    z-index: 1;
+    border-radius: 12px;
+    opacity: 0.8;
+  }
+  
+  .nominee-photo-simple {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    z-index: 2;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+  }
+  
+  .nominee-name-simple {
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin: 1rem 0 0.5rem;
+    line-height: 1.4;
+    max-width: 220px;
+  }
+  
+  .nominee-underline-simple {
+    width: 80px;
+    height: 2px;
+    background: #ff6a1a;
+    margin: 0 auto 1.5rem;
+    border-radius: 1px;
+  }
+  
+  /* Увеличенная кнопка голосования */
+  .vote-button-large {
+    cursor: pointer;
+    width: 180px;
+    height: 60px;
+    position: relative;
+    margin-top: 0.5rem;
+  }
+  
+  .vote-button-frame-large {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6a1a, #ff8c42);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+      0 5px 15px rgba(255, 106, 26, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .vote-button-frame-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+  
+  .vote-button-large:hover .vote-button-frame-large {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 25px rgba(255, 106, 26, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .vote-button-large:hover .vote-button-frame-large::before {
+    left: 100%;
+  }
+  
+  .vote-button-text-large {
+    color: #000;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Кнопка возврата */
+  .modal-back-button-container {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 106, 26, 0.1);
+  }
+  
+  .back-to-nominations-btn {
+    font-family: "Viaoda Libre", serif;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: transparent;
+    color: #ff8c42;
+    border: 2px solid rgba(255, 106, 26, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .back-to-nominations-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 106, 26, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .back-to-nominations-btn:hover {
+    background: rgba(255, 106, 26, 0.1);
+    border-color: #ff6a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 106, 26, 0.2);
+  }
+  
+  .back-to-nominations-btn:hover::before {
+    left: 100%;
+  }
+  
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    .nominees-modal-content {
+      width: 90%;
+      height: 80vh;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 200px;
+      height: 270px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .nominees-modal-content {
+      width: 95%;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nominees-modal-backdrop {
+      padding: 1rem;
+    }
+    
+    .nominees-modal-content {
+      width: 98%;
+      height: 90vh;
+    }
+    
+    .nomination-header-gradient {
+      padding: 1.5rem 1rem 1rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 1.8rem;
+    }
+    
+    .nomination-subtitle {
+      font-size: 1rem;
+    }
+    
+    .modal-close-elegant {
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      font-size: 1.8rem;
+    }
+    
+    .nominees-modal-body {
+      padding: 1.5rem;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 180px;
+      height: 240px;
+    }
+    
+    .vote-button-large {
+      width: 160px;
+      height: 55px;
+    }
+    
+    .vote-button-text-large {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nomination-title-elegant {
+      font-size: 1.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 160px;
+      height: 220px;
+    }
+    
+    .nominee-name-simple {
+      font-size: 1.1rem;
+    }
+    
+    .vote-button-large {
+      width: 140px;
+      height: 50px;
+    }
+    
+    .vote-button-text-large {
+      font-size: 1.1rem;
+    }
+    
+    .back-to-nominations-btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Модальное окно с номинантами */
+.nominees-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 0;
+    font-family: "Viaoda Libre", serif;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+  
+  .nominees-modal-content {
+    width: 85%;
+    max-width: 1400px;
+    height: 85vh;
+    background: rgba(20, 20, 25, 0.85);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 106, 26, 0.15);
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    animation: modalFadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Заголовок */
+  .nomination-header-gradient {
+    background: linear-gradient(135deg, 
+      rgba(255, 106, 26, 0.08), 
+      rgba(255, 106, 26, 0.03),
+      rgba(255, 106, 26, 0.08)
+    );
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 106, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .nomination-header-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 106, 26, 0.6), 
+      transparent
+    );
+  }
+  
+  .nomination-title-elegant {
+    font-family: "Viaoda Libre", serif;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+    text-align: center;
+    text-shadow: 
+      0 2px 10px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(255, 106, 26, 0.4);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .nomination-title-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      #ff6a1a, 
+      transparent
+    );
+  }
+  
+  .nomination-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  /* Кнопка закрытия */
+  .modal-close-elegant {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 106, 26, 0.1);
+    border: 1px solid rgba(255, 106, 26, 0.3);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: "Viaoda Libre", serif;
+  }
+  
+  .modal-close-elegant:hover {
+    background: rgba(255, 106, 26, 0.25);
+    transform: rotate(90deg);
+    border-color: #ff6a1a;
+  }
+  
+  .nominees-modal-body {
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto; /* Добавляем прокрутку внутри модального окна */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Сетка номинантов */
+  .nominees-grid-transparent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+  
+  /* Карточка номинанта - прозрачная */
+  .nominee-transparent-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Подсветка за спиной */
+  .nominee-photo-backglow {
+    position: relative;
+    width: 210px;
+    height: 280px;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-glow-effect {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 106, 26, 0.25) 0%,
+      rgba(255, 106, 26, 0.1) 40%,
+      transparent 70%
+    );
+    filter: blur(12px);
+    z-index: 1;
+    border-radius: 10px;
+    opacity: 0.7;
+  }
+  
+  .nominee-photo-simple {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: 2;
+    display: block;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nominee-name-simple {
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin: 0.8rem 0 0.3rem;
+    line-height: 1.3;
+    max-width: 210px;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nominee-underline-simple {
+    width: 70px;
+    height: 2px;
+    background: #ff6a1a;
+    margin: 0 auto 1.2rem;
+    border-radius: 1px;
+  }
+  
+  /* Кнопка голосования с vote.png */
+  .vote-button-large {
+    cursor: pointer;
+    width: 170px;
+    height: 55px;
+    position: relative;
+    margin-top: 0.3rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .vote-button-large:hover {
+    transform: scale(1.05);
+  }
+  
+  .vote-frame-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+  }
+  
+  .vote-button-text-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 3px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Кнопка возврата */
+  .modal-back-button-container {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 106, 26, 0.1);
+    flex-shrink: 0;
+  }
+  
+  .back-to-nominations-btn {
+    font-family: "Viaoda Libre", serif;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: transparent;
+    color: #ff8c42;
+    border: 2px solid rgba(255, 106, 26, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .back-to-nominations-btn:hover {
+    background: rgba(255, 106, 26, 0.1);
+    border-color: #ff6a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 106, 26, 0.2);
+  }
+  
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    .nominees-modal-content {
+      width: 90%;
+      height: 80vh;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 190px;
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .nominees-modal-content {
+      width: 95%;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 210px;
+      height: 270px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nominees-modal-backdrop {
+      padding: 1rem;
+    }
+    
+    .nominees-modal-content {
+      width: 98%;
+      height: 90vh;
+    }
+    
+    .nomination-header-gradient {
+      padding: 1.5rem 1rem 0.8rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 1.7rem;
+    }
+    
+    .nomination-subtitle {
+      font-size: 1rem;
+    }
+    
+    .modal-close-elegant {
+      top: 1rem;
+      right: 1rem;
+      width: 35px;
+      height: 35px;
+      font-size: 1.7rem;
+    }
+    
+    .nominees-modal-body {
+      padding: 1.5rem;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 180px;
+      height: 230px;
+    }
+    
+    .vote-button-large {
+      width: 150px;
+      height: 50px;
+    }
+    
+    .vote-button-text-large {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .nominees-grid-transparent {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 200px;
+      height: 260px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nomination-title-elegant {
+      font-size: 1.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 180px;
+      height: 230px;
+    }
+    
+    .nominee-name-simple {
+      font-size: 1.1rem;
+    }
+    
+    .vote-button-large {
+      width: 140px;
+      height: 45px;
+    }
+    
+    .vote-button-text-large {
+      font-size: 1rem;
+    }
+    
+    .back-to-nominations-btn {
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Оранжевая кнопка голосования - прозрачная внутри, оранжевая по контуру */
+.vote-orange-button {
+    width: 180px;
+    height: 55px;
+    background: transparent;
+    border: 2px solid #ff6a1a;
+    border-radius: 12px;
+    color: #ff6a1a;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vote-orange-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 106, 26, 0.2),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+  
+  .vote-orange-button:hover {
+    background: rgba(255, 106, 26, 0.1);
+    color: #ff8c42;
+    border-color: #ff8c42;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 106, 26, 0.25);
+  }
+  
+  .vote-orange-button:hover::before {
+    left: 100%;
+  }
+  
+  /* Альтернативный вариант кнопки с градиентной обводкой */
+  .vote-orange-button-alt {
+    width: 180px;
+    height: 55px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: white;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vote-orange-button-alt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(135deg, #ff6a1a, #ff8c42, #ff6a1a);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: all 0.3s ease;
+  }
+  
+  .vote-orange-button-alt:hover {
+    background: rgba(255, 106, 26, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 106, 26, 0.3);
+  }
+  
+  .vote-orange-button-alt:hover::before {
+    background: linear-gradient(135deg, #ff8c42, #ff6a1a, #ff8c42);
+  }
+
+  /* Стили для скроллбара в окне подтверждения */
+.vote-confirm-body-large::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(18, 18, 22, 0.3);
+    border-radius: 4px;
+  }
+  
+  .vote-confirm-body-large::-webkit-scrollbar-track {
+    background: rgba(255, 106, 26, 0.1);
+    border-radius: 4px;
+  }
+  
+  .vote-confirm-body-large::-webkit-scrollbar-thumb {
+    background: #ff6a1a;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 106, 26, 0.3);
+  }
+  
+  .vote-confirm-body-large::-webkit-scrollbar-thumb:hover {
+    background: #ff8c42;
+  }
+  
+  /* Для Firefox */
+  .vote-confirm-body-large {
+    scrollbar-width: thin;
+    scrollbar-color: #ff6a1a rgba(255, 106, 26, 0.1);
+  }
+  
+  /* Убедимся, что в модальном окне подтверждения тоже есть прокрутка если нужно */
+  .vote-confirm-modal-content-large {
+    max-height: 90vh;
+    overflow: hidden;
+  }
+  
+  .vote-confirm-body-large {
+    max-height: calc(90vh - 120px);
+    overflow-y: auto;
+  }
+
+  /* Модальное окно с номинантами */
+.nominees-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 0;
+    font-family: "Viaoda Libre", serif;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+  
+  .nominees-modal-content {
+    width: 85%;
+    max-width: 1400px;
+    height: 85vh;
+    background: rgba(20, 20, 25, 0.85);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 106, 26, 0.15);
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    animation: modalFadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Заголовок */
+  .nomination-header-gradient {
+    background: linear-gradient(135deg, 
+      rgba(255, 106, 26, 0.08), 
+      rgba(255, 106, 26, 0.03),
+      rgba(255, 106, 26, 0.08)
+    );
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 106, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .nomination-header-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 106, 26, 0.6), 
+      transparent
+    );
+  }
+  
+  .nomination-title-elegant {
+    font-family: "Viaoda Libre", serif;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+    text-align: center;
+    text-shadow: 
+      0 2px 10px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(255, 106, 26, 0.4);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .nomination-title-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      #ff6a1a, 
+      transparent
+    );
+  }
+  
+  .nomination-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  /* Кнопка закрытия */
+  .modal-close-elegant {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 106, 26, 0.1);
+    border: 1px solid rgba(255, 106, 26, 0.3);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: "Viaoda Libre", serif;
+  }
+  
+  .modal-close-elegant:hover {
+    background: rgba(255, 106, 26, 0.25);
+    transform: rotate(90deg);
+    border-color: #ff6a1a;
+  }
+  
+  .nominees-modal-body {
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto; /* Добавляем прокрутку внутри модального окна */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Стили для скроллбара внутри модального окна номинантов */
+  .nominees-modal-body::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(20, 20, 25, 0.3);
+    border-radius: 5px;
+  }
+  
+  .nominees-modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 106, 26, 0.1);
+    border-radius: 5px;
+  }
+  
+  .nominees-modal-body::-webkit-scrollbar-thumb {
+    background: #ff6a1a;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 106, 26, 0.3);
+  }
+  
+  .nominees-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #ff8c42;
+  }
+  
+  /* Для Firefox */
+  .nominees-modal-body {
+    scrollbar-width: thin;
+    scrollbar-color: #ff6a1a rgba(255, 106, 26, 0.1);
+  }
+  
+  /* Сетка номинантов */
+  .nominees-grid-transparent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+  
+  /* Карточка номинанта - прозрачная */
+  .nominee-transparent-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Подсветка за спиной */
+  .nominee-photo-backglow {
+    position: relative;
+    width: 210px;
+    height: 280px;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-glow-effect {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 106, 26, 0.25) 0%,
+      rgba(255, 106, 26, 0.1) 40%,
+      transparent 70%
+    );
+    filter: blur(12px);
+    z-index: 1;
+    border-radius: 10px;
+    opacity: 0.7;
+  }
+  
+  .nominee-photo-simple {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: 2;
+    display: block;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nominee-name-simple {
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin: 0.8rem 0 0.3rem;
+    line-height: 1.3;
+    max-width: 210px;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nominee-underline-simple {
+    width: 70px;
+    height: 2px;
+    background: #ff6a1a;
+    margin: 0 auto 1.2rem;
+    border-radius: 1px;
+  }
+  
+  /* Оранжевая кнопка голосования - прозрачная внутри, оранжевая по контуру */
+  .vote-orange-button {
+    width: 180px;
+    height: 55px;
+    background: transparent;
+    border: 2px solid #ff6a1a;
+    border-radius: 12px;
+    color: #ff6a1a;
+    font-family: "Viaoda Libre", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vote-orange-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 106, 26, 0.2),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+  
+  .vote-orange-button:hover {
+    background: rgba(255, 106, 26, 0.1);
+    color: #ff8c42;
+    border-color: #ff8c42;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 106, 26, 0.25);
+  }
+  
+  .vote-orange-button:hover::before {
+    left: 100%;
+  }
+  
+  /* Кнопка возврата */
+  .modal-back-button-container {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 106, 26, 0.1);
+    flex-shrink: 0;
+  }
+  
+  .back-to-nominations-btn {
+    font-family: "Viaoda Libre", serif;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: transparent;
+    color: #ff8c42;
+    border: 2px solid rgba(255, 106, 26, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .back-to-nominations-btn:hover {
+    background: rgba(255, 106, 26, 0.1);
+    border-color: #ff6a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 106, 26, 0.2);
+  }
+  
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    .nominees-modal-content {
+      width: 90%;
+      height: 80vh;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 190px;
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .nominees-modal-content {
+      width: 95%;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 210px;
+      height: 270px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nominees-modal-backdrop {
+      padding: 1rem;
+    }
+    
+    .nominees-modal-content {
+      width: 98%;
+      height: 90vh;
+    }
+    
+    .nomination-header-gradient {
+      padding: 1.5rem 1rem 0.8rem;
+    }
+    
+    .nomination-title-elegant {
+      font-size: 1.7rem;
+    }
+    
+    .nomination-subtitle {
+      font-size: 1rem;
+    }
+    
+    .modal-close-elegant {
+      top: 1rem;
+      right: 1rem;
+      width: 35px;
+      height: 35px;
+      font-size: 1.7rem;
+    }
+    
+    .nominees-modal-body {
+      padding: 1.5rem;
+    }
+    
+    .nominees-grid-transparent {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 180px;
+      height: 230px;
+    }
+    
+    .vote-orange-button {
+      width: 150px;
+      height: 50px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .nominees-grid-transparent {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 200px;
+      height: 260px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nomination-title-elegant {
+      font-size: 1.5rem;
+    }
+    
+    .nominee-photo-backglow {
+      width: 180px;
+      height: 230px;
+    }
+    
+    .nominee-name-simple {
+      font-size: 1.1rem;
+    }
+    
+    .vote-orange-button {
+      width: 140px;
+      height: 45px;
+      font-size: 1rem;
+    }
+    
+    .back-to-nominations-btn {
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+    }
+  }

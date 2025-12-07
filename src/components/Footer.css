@@ -1,0 +1,98 @@
+.site-footer {
+    background: rgb(20, 20, 25);
+    padding: 80px 20px;
+    margin-top: 60px;
+    position: relative;
+    overflow: visible; /* меняем hidden на visible */
+    /* Добавляем минимальную высоту */
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%; /* Занимает всю ширину */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Большое лого */
+  .logo {
+    width: 500px;
+    max-width: 80%; /* Ограничиваем максимальную ширину */
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+    /* Убираем любые трансформации которые могут мешать */
+    transform: none;
+    display: block;
+  }
+  
+  /* Текст как в шапке */
+  .caption {
+    font-family: "Viaoda Libre", serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 95%;
+    text-transform: uppercase;
+    color: #fff0e5;
+    text-align: center;
+    letter-spacing: -0.02em;
+    transform: scaleY(1.15);
+    font-stretch: condensed;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    /* Запрещаем перенос текста если не помещается */
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: 60px 20px;
+      min-height: 350px;
+    }
+    
+    .logo {
+      width: 350px;
+      max-width: 85%;
+    }
+    
+    .caption {
+      font-size: 2.5rem;
+      line-height: 100%;
+      white-space: normal; /* Разрешаем перенос на мобильных */
+    }
+    
+    .logo-row {
+      gap: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .site-footer {
+      padding: 50px 15px;
+      margin-top: 40px;
+      min-height: 300px;
+    }
+    
+    .logo {
+      width: 280px;
+      max-width: 90%;
+    }
+    
+    .caption {
+      font-size: 2rem;
+      line-height: 110%;
+      white-space: normal;
+    }
+    
+    .logo-row {
+      gap: 25px;
+    }
+  }
