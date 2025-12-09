@@ -9,16 +9,16 @@ export default function Header() {
         target="_blank"
         rel="noreferrer"
       >
-        <img src="/svinline.png" alt="Winline" />
+        <img src="/gray/svinline.png" alt="Winline" />
       </a>
       {/* Фоновое видео */}
-      <video className="header-bg-video" src="/flags.webm" autoPlay loop muted />
+      <video className="header-bg-video" src="/gray/flags.webm" autoPlay loop muted />
 
       {/* Контент сверху */}
       <div className="header-content">
-        <img src="/SLAY.png" className="slay-logo" />
+        <img src="/gray/SLAY.png" className="slay-logo" />
 
-        <img src="/cup.png" className="slay-cup" />
+        <img src="/gray/cup.png" className="slay-cup" />
 
         {/* Надпись "ГЛАВНАЯ ПРЕМИЯ РУ-СТРИМИНГА" */}
         <div className="header-title">

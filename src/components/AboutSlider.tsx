@@ -4,6 +4,8 @@ import p1 from "../assets/1.jpg";
 import p2 from "../assets/2.jpg";
 import p3 from "../assets/3.jpg";
 
+
+
 const SLIDES = [
     {
         img: p3,
@@ -31,12 +33,12 @@ export default function AboutSlider() {
     return (
         <section className="about-slider">
             {/* Шлемы */}
-            <img src="/right-helmet.png" className="helmet helmet-left" />
-            <img src="/left-helmet.png" className="helmet helmet-right" />
+            <img src="/gray/right-helmet.png" className="helmet helmet-left" />
+            <img src="/gray/left-helmet.png" className="helmet helmet-right" />
 
             {/* Цепи */}
-            <video className="chain chain-left" src="/chain-left.webm" autoPlay loop muted playsInline />
-            <video className="chain chain-right" src="/chain-right.webm" autoPlay loop muted playsInline />
+            <video className="chain chain-left" src="/gray/chain-left.webm" autoPlay loop muted playsInline />
+            <video className="chain chain-right" src="/gray/chain-right.webm" autoPlay loop muted playsInline />
 
             <div className="slide-content">
 
@@ -53,7 +55,7 @@ export default function AboutSlider() {
                 {/* Нормальные стрелки-картинки */}
                 <div className="arrows">
                     <img
-                        src="/arrow-left.png"
+                        src="/gray/arrow-left.png"
                         className="arrow-img"
                         onClick={prev}
                     />
@@ -61,7 +63,7 @@ export default function AboutSlider() {
                         {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
                     </div>
                     <img
-                        src="/arrow-right.png"
+                        src="/gray/arrow-right.png"
                         className="arrow-img"
                         onClick={next}
                     />

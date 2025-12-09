@@ -1,17 +1,28 @@
+// vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/gray/',  // ← важно для GitHub Pages!
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public/*', // Копируем всё из public
+          dest: '.'
+        }
+      ]
+    })
+  ],
+  base: '/gray/',
+  server: {
+    port: 3000,
+    open: true
+  },
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js'
-      }
-    }
+    // Копируем public вручную
+    copyPublicDir: true // ← ЭТА СТРОКА ВАЖНА!
   }
 })

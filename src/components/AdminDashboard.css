@@ -1,0 +1,371 @@
+/* AdminDashboard.css */
+
+.admin-simple {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eaeaea;
+  }
+  
+  .admin-header h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .total-info {
+    background: #667eea;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .admin-content {
+    display: flex;
+    gap: 20px;
+    min-height: 500px;
+  }
+  
+  /* Левая панель: список номинаций */
+  .nominations-list {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 300px;
+  }
+  
+  .nominations-list h3 {
+    margin: 0 0 15px 0;
+    color: #444;
+  }
+  
+  .nomination-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nomination-item {
+    background: white;
+    border: 2px solid #eaeaea;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .nomination-item:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .nomination-item.selected {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+  }
+  
+  .nomination-item.private {
+    border-left: 4px solid #ff6b6b;
+  }
+  
+  .nomination-item.private .nomination-type {
+    background: #ff6b6b;
+  }
+  
+  .nomination-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .nomination-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .nomination-type {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #4CAF50;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .nomination-type.private {
+    background: #ff6b6b;
+  }
+  
+  .nomination-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #666;
+  }
+  
+  .vote-count {
+    font-weight: 600;
+    color: #667eea;
+  }
+  
+  .nomination-rank {
+    background: #eaeaea;
+    color: #333;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .nomination-item.selected .nomination-rank {
+    background: #667eea;
+    color: white;
+  }
+  
+  /* Правая панель: детали номинации */
+  .nominees-details {
+    flex: 2;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    border: 2px solid #eaeaea;
+  }
+  
+  .details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .details-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 22px;
+  }
+  
+  .back-button {
+    background: #f1f3f5;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  
+  .back-button:hover {
+    background: #e9ecef;
+  }
+  
+  .details-info {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: 600;
+  }
+  
+  /* Таблица номинантов */
+  .nominees-table {
+    overflow-x: auto;
+  }
+  
+  .nominees-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .nominees-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+    border-bottom: 2px solid #eaeaea;
+  }
+  
+  .nominees-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .nominees-table tr.top-three {
+    background: rgba(255, 215, 0, 0.05);
+  }
+  
+  .nominees-table tr:hover {
+    background: #f8f9fa;
+  }
+  
+  .position {
+    width: 70px;
+  }
+  
+  .position-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .position-circle.gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #333;
+  }
+  
+  .position-circle.silver {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
+    color: white;
+  }
+  
+  .position-circle.bronze {
+    background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+    color: white;
+  }
+  
+  .nominee-name {
+    font-weight: 600;
+    color: #333;
+    min-width: 200px;
+  }
+  
+  .vote-count {
+    font-weight: 700;
+    color: #667eea;
+    width: 100px;
+  }
+  
+  .percentage {
+    width: 200px;
+  }
+  
+  .percentage-bar {
+    position: relative;
+    height: 20px;
+    background: #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .percentage-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  
+  .percentage-text {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Состояние когда ничего не выбрано */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  .empty-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .empty-state h3 {
+    color: #333;
+    margin: 0 0 10px 0;
+  }
+  
+  .empty-state p {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .stats-summary {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 5px;
+  }
+  
+  .stat-label {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  /* Сообщение "нет голосов" */
+  .no-votes {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  /* Индикатор загрузки */
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .admin-content {
+      flex-direction: column;
+    }
+    
+    .nominations-list {
+      min-width: auto;
+    }
+    
+    .percentage-bar {
+      min-width: 150px;
+    }
+  }
