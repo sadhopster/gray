@@ -1,20 +1,8 @@
-// vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'public/*', // Копируем всё из public
-          dest: '.'
-        }
-      ]
-    })
-  ],
+  plugins: [react()],
   base: '/gray/',
   server: {
     port: 3000,
@@ -22,7 +10,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    // Копируем public вручную
-    copyPublicDir: true // ← ЭТА СТРОКА ВАЖНА!
+    copyPublicDir: true, // правильно
+    emptyOutDir: true    // очищает dist перед сборкой
   }
 })
