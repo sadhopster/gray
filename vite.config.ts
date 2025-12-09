@@ -11,6 +11,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     copyPublicDir: true, // правильно
-    emptyOutDir: true    // очищает dist перед сборкой
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }    // очищает dist перед сборкой
   }
+}
 })
