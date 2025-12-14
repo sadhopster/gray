@@ -1,3 +1,8 @@
+
+* {
+  background-color: #141419 !important;
+}
+
 .slay-header {
   position: relative;
   width: 100%;
@@ -782,7 +787,7 @@ body,
 html,
 #root,
 .app {
-  background-color: transparent !important;
+  background-color: #141419 !important;
 }
 :root {
   --bg-dark: rgb(20, 20, 25);
@@ -3978,4 +3983,29 @@ html,
   max-width: 100vw;
   overflow-x: hidden;
   position: relative;
+}
+
+body {
+  background-color: #141419 !important;
+  color: #fff !important;
+}
+
+html {
+  background-color: #141419 !important;
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: dark) {
+  :root,
+  body,
+  html,
+  #root,
+  .app,
+  .page-container,
+  .main-container,
+  div[class*="container"],
+  section,
+  div {
+    background-color: #141419 !important;
+    color: #fff !important;
+  }
 }
